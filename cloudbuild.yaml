@@ -17,6 +17,6 @@ steps:
     args: ['gcloud', 'run', 'deploy', 'docker-vpc', 
            '--image=europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA',
            '--set-env-vars=[_HOST=${_HOST},_PORT=${_PORT},_USER=${_USER},_PASSWORD=${_PASSWORD},_DATABASE=${_DATABASE}]', 
-           '--region', 'europe-central2',  '--vpc-connector', 'solta-test','--vpc-egress', 'all', '--allow-unauthenticated' ]
+           '--region', 'europe-central2',  '--vpc-connector', 'vpc-solta-connect','--vpc-egress', 'all', '--allow-unauthenticated' ]
 images:
   - europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA
