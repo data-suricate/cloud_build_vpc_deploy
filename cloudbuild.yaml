@@ -12,7 +12,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA']
   - name: google/cloud-sdk
-    args: ['gcloud', 'compute', 'networks', 'vpc-access', 'connectors', 'create', 'vpc-solta-connect','--network', 'solta-test', '--region', 'europe-central2',  '--range','10.160.0.0/20']
+    args: ['gcloud', 'compute', 'networks', 'vpc-access', 'connectors', 'create', 'vpc-solta-connect','--network', 'solta-test', '--region', 'europe-central2',  '--range','10.160.10.0/28']
   - name: google/cloud-sdk
     args: ['gcloud', 'run', 'deploy', 'docker-vpc', 
            '--image=europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA',
