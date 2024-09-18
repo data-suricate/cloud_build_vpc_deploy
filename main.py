@@ -1,8 +1,8 @@
 import os
-from flask import Flask
+from fastapi import FastAPI
 import psycopg2
 
-app = Flask(__name__)
+app = FastAPI()
 
 # Configuration de la connexion à la base de données
 host = os.getenv('_HOST')
@@ -11,8 +11,11 @@ user = os.getenv('_USER')
 password = os.getenv('_PASSWORD')
 database = os.getenv('_DATABASE')
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
-@app.route('/users')
+@app.get('/users')
 def get_users():
     print("in")
     print(" test 1")

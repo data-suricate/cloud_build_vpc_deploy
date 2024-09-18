@@ -24,4 +24,4 @@ RUN apt-get clean
 
 # Start the Flask application using Uvicorn
 
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "main:app", "--reload-dir", "."]
+CMD ["fastapi", "run", "main.py", "--port", "8000"]
