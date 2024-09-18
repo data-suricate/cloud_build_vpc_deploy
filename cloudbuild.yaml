@@ -4,6 +4,8 @@ substitutions:
   _USER: 'USER'
   _PASSWORD: '*****'
   _DATABASE: 'db'
+options:
+  logging: CLOUD_LOGGING_ONLY
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA','.']
