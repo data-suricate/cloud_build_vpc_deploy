@@ -1,0 +1,20 @@
+substitutions:
+  _HOST: '0.0.0.0'
+  _PORT: '1234'
+  _USER: 'USER'
+  _PASSWORD: '*****'
+  _DATABASE: 'db'
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA','.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '-t', 'europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA']
+  - name: google/cloud-sdk
+    args: ['gcloud', 'compute', 'networks', 'vpc-access', 'connectors', 'create', 'vpc-solta-connect','--network', 'solta-test', '--region', 'europe-central2',  '--range','10.160.0.0/20']
+  - name: google/cloud-sdk
+    args: ['gcloud', 'run', 'deploy', 'docker-vpc', 
+           '--image=europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA',
+           '--set-env-vars=[_HOST=${_HOST},_PORT=${_PORT},_USER=${_USER},_PASSWORD=${_PASSWORD},_DATABASE=${_DATABASE}]', 
+           '--region', 'europe-central2',  '--vpc-connector', 'solta-test','--vpc-egress', 'all', '--allow-unauthenticated' ]
+images:
+  - europe-central2-docker.pkg.dev/global-timer-435514-r9/soltaartifactreggistry/docker-vpc:$SHORT_SHA
