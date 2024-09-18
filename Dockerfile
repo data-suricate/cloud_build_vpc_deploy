@@ -7,7 +7,7 @@ RUN pip install -r requirement.txt
 # Copy the Flask application code to the container
 COPY . .
 # Expose the port on which the Flask API will run
-EXPOSE 8000
+EXPOSE 8080
 
 
 
@@ -21,7 +21,4 @@ RUN apt-get autoremove -y
 RUN apt-get clean
 
 
-
-# Start the Flask application using Uvicorn
-
-CMD ["fastapi", "run", "main.py", "--port", "8000"]
+CMD ["fastapi", "run", "main.py", "--port", "8080"]
