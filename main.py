@@ -7,8 +7,11 @@ app = FastAPI()
 # Configuration de la connexion à la base de données
 host = os.getenv('_HOST')
 port = os.getenv('_PORT')
+
 user = os.getenv('_USER')
+
 password = os.getenv('_PASSWORD')
+
 database = os.getenv('_DATABASE')
 
 @app.get("/")
@@ -19,6 +22,12 @@ def read_root():
 def get_users():
     print("in")
     print(" test 1")
+    print("debug host ", host)
+    print("debug port ", port)
+    print("debug user ", user)
+    print("debug password ", password)
+    print("debug database ", database)
+
     conn = psycopg2.connect(
         host=host,
         port=port,
